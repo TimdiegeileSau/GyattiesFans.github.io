@@ -6,13 +6,14 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
+      background-color: #111;
+      color: white;
       text-align: center;
       padding: 40px;
     }
 
     h1 {
-      color: #222;
+      color: #00ffcc;
     }
 
     .dropdown {
@@ -28,12 +29,12 @@
 
     .content {
       display: none;
-      background: white;
+      background: #222;
       padding: 20px;
       border-radius: 10px;
       width: 320px;
       margin: 20px auto;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
       text-align: left;
     }
 
@@ -41,6 +42,36 @@
       max-width: 100%;
       border-radius: 10px;
       margin-top: 10px;
+    }
+
+    #gyatt-button {
+      margin-top: 30px;
+      padding: 12px 20px;
+      background-color: #00ffcc;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .gyatt {
+      position: absolute;
+      font-weight: bold;
+      color: #00ffcc;
+      animation: floatUp 2s ease-out forwards;
+      pointer-events: none;
+      font-size: 20px;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-150px) rotate(360deg);
+      }
     }
   </style>
 </head>
@@ -86,6 +117,8 @@
     <img src="IMG_0273.png" alt="Zusatzbild von Yannik">
   </div>
 
+  <button id="gyatt-button" onclick="spawnGyatts()">GYATT!</button>
+
   <script>
     function showContent() {
       document.getElementById("meme").style.display = "none";
@@ -95,6 +128,21 @@
       const value = document.getElementById("menu").value;
       if (value) {
         document.getElementById(value).style.display = "block";
+      }
+    }
+
+    function spawnGyatts() {
+      for (let i = 0; i < 20; i++) {
+        const gyatt = document.createElement("div");
+        gyatt.className = "gyatt";
+        gyatt.textContent = "GYATT";
+        gyatt.style.left = Math.random() * 90 + "vw";
+        gyatt.style.top = "60vh";
+        document.body.appendChild(gyatt);
+
+        setTimeout(() => {
+          gyatt.remove();
+        }, 2000);
       }
     }
   </script>
